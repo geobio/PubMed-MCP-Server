@@ -25,7 +25,7 @@ The PubMed MCP Server provides a bridge between AI assistants and PubMed's vast 
 ### Installation
 ### Installing via Smithery
 
-To install medRxiv Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server):
+To install pubmed Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server):
 
 #### claude
 
@@ -76,7 +76,7 @@ Add this configuration to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "medrxiv": {
+    "pubmed": {
       "command": "python",
       "args": ["-m", "pubmed-mcp-server"]
       }
@@ -105,11 +105,11 @@ Using with Cline
 ```json
 {
   "mcpServers": {
-    "medrxiv": {
+    "pubmed": {
       "command": "bash",
       "args": [
         "-c",
-        "source /home/YOUR/PATH/mcp-server-medRxiv/.venv/bin/activate && python /home/YOUR/PATH/pubmed-mcp-server.py"
+        "source /home/YOUR/PATH/mcp-server-pubmed/.venv/bin/activate && python /home/YOUR/PATH/pubmed-mcp-server.py"
       ],
       "env": {},
       "disabled": false,
