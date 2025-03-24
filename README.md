@@ -1,5 +1,5 @@
 # PubMed MCP Server
-
+[![smithery badge](https://smithery.ai/badge/@JackKuo666/pubmed-mcp-server)](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server)
 🔍 Enable AI assistants to search, access, and analyze PubMed articles through a simple MCP interface.
 
 The PubMed MCP Server provides a bridge between AI assistants and PubMed's vast repository of biomedical literature through the Model Context Protocol (MCP). It allows AI models to search for scientific articles, access their metadata, and perform deep analysis in a programmatic way.
@@ -23,6 +23,31 @@ The PubMed MCP Server provides a bridge between AI assistants and PubMed's vast 
 - FastMCP library
 
 ### Installation
+### Installing via Smithery
+
+To install medRxiv Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server):
+
+#### claude
+
+```sh
+npx -y @smithery/cli@latest install @JackKuo666/pubmed-mcp-server --client claude --config "{}"
+```
+
+#### Cursor
+
+Paste the following into Settings → Cursor Settings → MCP → Add new server: 
+- Mac/Linux  
+```s
+npx -y @smithery/cli@latest run @JackKuo666/pubmed-mcp-server --client cursor --config "{}" 
+```
+#### Windsurf
+```sh
+npx -y @smithery/cli@latest install @JackKuo666/pubmed-mcp-server --client windsurf --config "{}"
+```
+### CLine
+```sh
+npx -y @smithery/cli@latest install @JackKuo666/pubmed-mcp-server --client cline --config "{}"
+```
 
 1. Clone the repository:
    ```
@@ -41,6 +66,57 @@ Start the MCP server:
 
 ```bash
 python pubmed_server.py
+```
+## Usage with Claude Desktop
+
+Add this configuration to your `claude_desktop_config.json`:
+
+(Mac OS)
+
+```json
+{
+  "mcpServers": {
+    "medrxiv": {
+      "command": "python",
+      "args": ["-m", "pubmed-mcp-server"]
+      }
+  }
+}
+```
+
+(Windows version):
+
+```json
+{
+  "mcpServers": {
+    "pubmed": {
+      "command": "C:\\Users\\YOUR\\PATH\\miniconda3\\envs\\mcp_server\\python.exe",
+      "args": [
+        "D:\\code\\YOUR\\PATH\\PubMed-MCP-Server\\pubmed_server.py"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+Using with Cline
+```json
+{
+  "mcpServers": {
+    "medrxiv": {
+      "command": "bash",
+      "args": [
+        "-c",
+        "source /home/YOUR/PATH/mcp-server-medRxiv/.venv/bin/activate && python /home/YOUR/PATH/pubmed-mcp-server.py"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
 ```
 
 ## 🛠 MCP Tools
