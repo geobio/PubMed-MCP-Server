@@ -102,7 +102,7 @@ async def download_pubmed_pdf(pmid: Union[str, int]) -> str:
     except Exception as e:
         return f"An error occurred while attempting to download the PDF: {str(e)}"
 
-@mcp.tool()
+@mcp.prompt()
 async def deep_paper_analysis(pmid: Union[str, int]) -> Dict[str, str]:
     logging.info(f"Performing deep paper analysis for PMID: {pmid}")
     """
@@ -115,32 +115,18 @@ async def deep_paper_analysis(pmid: Union[str, int]) -> Dict[str, str]:
         Dictionary containing the comprehensive analysis structure
     """
     try:
-        pmid = str(pmid)
-        metadata = await asyncio.to_thread(get_pubmed_metadata, pmid)
+        pmid_str = str(pmid)
+        metadata = await asyncio.to_thread(get_pubmed_metadata, pmid_str)
         if not metadata:
-            return {"error": f"No metadata found for PMID: {pmid}"}
-
-        title = metadata['Title']
-        authors = metadata['Authors']
-        abstract = metadata['Abstract']
-
-        analysis = {
-            "Executive Summary": f"This analysis examines the paper titled '{title}' by {authors} abstract: {abstract}. The study focuses on [brief description of main topic].",
+            return {"error": f"No metadata found for PMID: {pmid_str}"}
             
-            "Research Context": f"The research is situated within the broader context of [field/topic]. Key background information includes [relevant prior research or gaps in knowledge].",
-            
-            "Methodology Analysis": "The study employs [describe research methods], which are [evaluate appropriateness]. Potential limitations of this approach include [list limitations].",
-            
-            "Results Evaluation": "The key findings of the study are [summarize main results]. The strength of these results is [evaluate statistical significance, if applicable]. Potential implications of these findings include [list implications].",
-            
-            "Practical and Theoretical Implications": "Practically, this research could impact [list practical applications]. Theoretically, it contributes to [describe theoretical advancements or challenges to existing theories].",
-            
-            "Future Research Directions": "Based on this study, future research could explore [suggest follow-up studies or new research questions].",
-            
-            "Broader Impacts": "The broader impacts of this research extend to [describe societal, economic, or other wide-reaching effects]. Potential ethical considerations include [list any ethical implications]."
-        }
-
-        return analysis
+        # 使用导入的 deep_paper_analysis 函数生成分析提示
+        # 为避免递归调用，我们需要明确指定导入的函数
+        from pubmed_web_search import deep_paper_analysis as web_deep_paper_analysis
+        analysis_prompt = await asyncio.to_thread(web_deep_paper_analysis, metadata)
+        
+        # 返回包含分析提示的字典
+        return {"analysis_prompt": analysis_prompt}
     except Exception as e:
         return {"error": f"An error occurred while performing the deep paper analysis: {str(e)}"}
 
