@@ -1,5 +1,4 @@
 # PubMed MCP Server
-[![smithery badge](https://smithery.ai/badge/@JackKuo666/pubmed-mcp-server)](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server)
 
 [![smithery badge](https://smithery.ai/badge/@JackKuo666/pubmed-mcp-server)](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server)
 
@@ -25,23 +24,15 @@ The PubMed MCP Server provides a bridge between AI assistants and PubMed's vast 
 - Python 3.10+
 - FastMCP library
 
+### Installation
 ### Installing via Smithery
 
 To install pubmed-mcp-server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server):
 
-```bash
-npx -y @smithery/cli install @JackKuo666/pubmed-mcp-server --client claude
-```
-
-### Installation
-### Installing via Smithery
-
-To install pubmed Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@JackKuo666/pubmed-mcp-server):
-
 #### claude
 
-```sh
-npx -y @smithery/cli@latest install @JackKuo666/pubmed-mcp-server --client claude --config "{}"
+```bash
+npx -y @smithery/cli install @JackKuo666/pubmed-mcp-server --client claude
 ```
 
 #### Cursor
